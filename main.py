@@ -28,8 +28,3 @@ def get_text_messages(message):
 bot.polling(none_stop=True, interval=0)
 
 
-if __name__=='__main__':
-    while True:
-        print("key.light")
-        get_text_messages()
-
