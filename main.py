@@ -1,5 +1,6 @@
-import telebot;
-bot = telebot.TeleBot('key');
+import telebot
+import key
+bot = telebot.TeleBot(key.token)
 @bot.message_handler(content_types=['text'])
 def get_text_messages(message):
     if message.text == "Привет":
@@ -8,3 +9,4 @@ def get_text_messages(message):
         bot.send_message(message.from_user.id, "Напиши привет")
     else:
         bot.send_message(message.from_user.id, 'Я тебя не понимаю. Напиши /help.')
+bot.polling(none_stop=True, interval=0)
