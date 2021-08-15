@@ -1,16 +1,17 @@
 import RPi.GPIO as GPIO
 import telebot
-#import key
+import key
 
 GPIO.setmode(GPIO.BCM)
 GPIO.setup(20, GPIO.OUT)
 GPIO.output(20, GPIO.HIGH)
 stat = False
-bot = telebot.TeleBot("1925884861:AAHHLe1m6lblIaYvjrQUwxiPchFU1g_YZRg")
+bot = telebot.TeleBot(key.token)
 @bot.message_handler(content_types=['text'])
 
 def get_text_messages(message):
     if message.text == "enable":
+        print (message.from_user.id)
         print (c.stat)
         c.stat = True
         bot.send_message(message.from_user.id, "I'll turn it on now")
@@ -29,6 +30,13 @@ def get_text_messages(message):
         else:
             print (c.stat)
             bot.send_message(message.from_user.id, "lights are ON")
+    elif message.text == "admin":
+        if message.from_user.id == 201265163:
+            bot.send_message(message.from_user.id, "enter your password")
+            if message.text == "admin":
+                print('enter the command')
+        else:
+            bot.send_message(message.from_user.id, "you don't have access rights")
     else:
         bot.send_message(message.from_user.id, 'write /help.')
 class stat:
